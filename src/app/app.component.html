@@ -18,3 +18,42 @@
   </li>
 </ul>
 
+<h3>User</h3>
+<button (click)="onLogin()">login</button>
+<button (click)="onLogout()">logout</button>
+<pre *ngIf="user != null">{{ user.email }}</pre> 
+
+<table>
+  <thead>
+    <tr>
+      <th *ngFor="let key of teamKeys">
+        {{ key }}
+      </th><th>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td *ngFor="let key of teamKeys">
+        <input type="text" [(ngModel)]="newRow[key]">
+      </td>
+      <td>
+          <button (click)="addRow(newRow)">new</button>
+        </td>
+    </tr>
+    <tr *ngFor="let team of teams">
+      <td *ngFor="let key of teamKeys">
+        <input type="text" [(ngModel)]="team[key]">
+      </td>
+      <td>
+        <button (click)="updateRow(team)">update</button>
+        <button (click)="deleteRow(team.id)">delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<input type="text" [(ngModel)]="teamID">
+<button (click)="getTeam(teamID)">getTeam</button>
+<pre *ngIf="oneTeam">{{ oneTeam | json }}</pre>
+

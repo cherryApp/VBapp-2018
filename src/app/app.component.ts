@@ -1,10 +1,74 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { BaseService } from './service/base.service';
+import { Team } from './model/team';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AuthService } from './service/auth.service';
+import { isNull } from 'util';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'app';
+export class AppComponent implements OnInit {
+  title = 'Awesome VB2018 app';
+  user: any = {};
+  teamKeys: string[] = [];
+  teams: Team[] = [];
+  oneTeam: any;
+  newRow: any = {};
+
+  constructor(
+    private baseService: BaseService<Team>,
+    private afAuth: AngularFireAuth,
+    private authService: AuthService
+  ) {
+    let keyTeam: Team = new Team();
+    this.teamKeys = Object.keys( keyTeam );
+  }
+
+  ngOnInit() {
+    this.afAuth.user.subscribe(
+      user => { 
+        this.user = user;
+        if (!isNull(user)) {
+          this.getAllData();
+        }
+      },
+      err => console.log(err)
+    );
+  }
+  
+  getAllData() {
+    this.baseService.getAll('teams').subscribe(
+      teams => this.teams = teams,
+      err => console.error(err)
+    );
+  }
+
+  getTeam(teamID) {
+    this.baseService.getOne(teamID).forEach(
+      team => this.oneTeam = team
+    );
+  }
+
+  onLogin() {
+    this.authService.login();
+  }
+
+  onLogout() {
+    this.authService.logOut();
+  }
+
+  updateRow(team: Team): void {
+    this.baseService.update(team.id, team);
+  }
+
+  addRow(team: Team): void {
+    this.baseService.create(team);
+  }
+
+  deleteRow(id: string): void {
+    this.baseService.delete(id);
+  }
 }
