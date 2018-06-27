@@ -49,6 +49,14 @@ export class MatchListComponent implements OnInit {
     );
   }
 
+  getStadium(id): Stadium {
+    return this.stadiums.filter( stadium => stadium.id == id )[0];
+  }
+
+  getTeam(id): Team {
+    return this.teams.filter( team => team.id == id )[0] || new Team();
+  }
+
   /*
 
   .subscribe(

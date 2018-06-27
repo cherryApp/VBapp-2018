@@ -1,6 +1,25 @@
 <h5>Meccsek</h5>
 <div class="row" *ngIf="isDataLoaded">
     <div *ngFor="let match of knockout.matches" class="col-xs-12 col-md-4 col-lg-3">
-        {{ match | json }}
+        <div class="card match-card">
+            <div class="card-img-top">
+                <img [src]="getStadium(match.stadium).image" alt="Card image cap">
+            </div>            
+            <div class="card-body">
+                <h5 class="card-title">Meccs: {{ match.name }}</h5>
+                {{ getStadium(match.stadium).name | slice:0:20 }}
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item team-item">
+                    <img [src]="getTeam(match.home_team).flag" alt="">
+                    {{ getTeam(match.home_team).name }}
+                </li>
+                <li class="list-group-item team-item">
+                    <img [src]="getTeam(match.away_team).flag" alt="">
+                    {{ getTeam(match.away_team).name }}
+                </li>
+                <li class="list-group-item">{{ match.date | date:'MMM dd HH:mm' }}</li>
+            </ul>
+        </div>
     </div>
 </div>
