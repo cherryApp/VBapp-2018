@@ -4,6 +4,7 @@ import { Team } from './model/team';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AuthService } from './service/auth.service';
 import { isNull } from 'util';
+import { ImportService } from './service/import.service';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +22,8 @@ export class AppComponent implements OnInit {
   constructor(
     private baseService: BaseService<Team>,
     private afAuth: AngularFireAuth,
-    private authService: AuthService
+    private authService: AuthService,
+    private importService: ImportService
   ) {
     let keyTeam: Team = new Team();
     this.teamKeys = Object.keys( keyTeam );
@@ -37,6 +39,8 @@ export class AppComponent implements OnInit {
       },
       err => console.log(err)
     );
+
+    this.importService.getVBData();
   }
   
   getAllData() {

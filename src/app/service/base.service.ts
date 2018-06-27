@@ -12,7 +12,7 @@ import { Team } from '../model/team';
   providedIn: 'root'
 })
 export class BaseService<T> {
-  private itemsCollection: AngularFirestoreCollection<T>;
+  itemsCollection: AngularFirestoreCollection<T>;
   collectionName: string = '';
   afs: AngularFirestore;
 
@@ -45,9 +45,9 @@ export class BaseService<T> {
     );
   }
 
-  create(team: T): void {
+  create(team: T): Promise<any> {
     delete team['id'];
-    this.itemsCollection.add(team);
+    return this.itemsCollection.add(team);
   }
 
   update(teamOrID: T | string, newTeamData: any): void {
