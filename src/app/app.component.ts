@@ -52,14 +52,6 @@ export class AppComponent implements OnInit {
     );
   }
 
-  onLogin() {
-    this.authService.login();
-  }
-
-  onLogout() {
-    this.authService.logOut();
-  }
-
   updateRow(team: Team): void {
     this.baseService.update(team.id, team);
   }

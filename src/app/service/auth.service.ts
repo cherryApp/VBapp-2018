@@ -8,13 +8,15 @@ export class AuthService {
 
   constructor(private afAuth: AngularFireAuth) { }
 
-  login() {
+  login(loginData) {
     let user = {
       email: 'vbapp@gmail.com',
       password: 'joe_vb777'
     };
 
-    this.afAuth.auth.signInWithEmailAndPassword(
+    user = loginData || user;
+
+    return this.afAuth.auth.signInWithEmailAndPassword(
       user.email,
       user.password
     );
