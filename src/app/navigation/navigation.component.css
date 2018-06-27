@@ -1,0 +1,7 @@
+.nav-div {
+    background: url('/assets/pattern.jpg') fixed #0050ab;
+}
+
+.nav-div a.text-dark, h5 a {
+    color: aliceblue !important;
+}

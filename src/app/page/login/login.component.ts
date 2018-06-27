@@ -28,6 +28,14 @@ export class LoginComponent implements OnInit {
       );
   }
 
+  onLoginGoogle(): void {
+    this.authService.loginWithGoogle()
+      .then(
+        resolve => this.router.navigateByUrl('/'),
+        reject => this.loginError = "Hiba az adatokban!"
+      );
+  }
+
   ngOnInit() {
   }
 

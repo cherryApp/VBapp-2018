@@ -1,14 +1,14 @@
-<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+<div class="nav-div d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
   <h5 class="my-0 mr-md-auto font-weight-normal">
     <a routerLink="/">VBtipp 2018</a>
   </h5>
   <nav class="my-2 my-md-0 mr-md-3">
     <a class="p-2 text-dark" routerLink="/">Meccsek</a>
   </nav>
-  <a class="btn btn-outline-primary" routerLink="/login" *ngIf="!isLoggedIn">
+  <a class="btn btn-outline-light" routerLink="/login" *ngIf="!isLoggedIn">
     Belépés
   </a>
-  <button class="btn btn-outline-primary" (click)="onLogout()" *ngIf="isLoggedIn">
+  <button class="btn btn-outline-light" (click)="onLogout()" *ngIf="isLoggedIn">
     Kilépés
   </button>
 </div>
