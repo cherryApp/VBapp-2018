@@ -1,0 +1,40 @@
+<div *ngIf="isLoaded">
+  <h3>{{ knockout.name }}</h3>
+
+  <div class="row">
+    <div *ngFor="let match of knockout.matches" class="col-xs-12 col-md-4">
+      <div class="card match-card">
+        <div class="card-img-top">
+          <img [src]="getStadium(match.stadium).image" alt="Card image cap">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Match {{ match.name }}</h5>
+          <p class="card-text">{{ getStadium(match.stadium).name }}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item team-item" (click)="pickTeam(match, match.home_team)" 
+            [class.picked]="match.home_team == match.picked">
+            <img [src]="getTeam(match.home_team).flag" alt=""> 
+            {{ getTeam(match.home_team).name }}
+          </li>
+          <li class="list-group-item team-item" (click)="pickTeam(match, match.away_team)" 
+            [class.picked]="match.away_team == match.picked">
+            <img [src]="getTeam(match.away_team).flag" alt=""> 
+            {{ getTeam(match.away_team).name }}
+          </li>
+          <li class="list-group-item">{{ match.date | date:'MMM dd HH:mm' }}</li>
+        </ul>
+        <div class="card-body">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="összeg" aria-label="összeg" 
+              [(ngModel)]="match.amount">
+            <div class="input-group-append">
+              <button class="btn btn-info" type="button" (click)="onBet(match)">Tét</button>
+            </div>
+          </div>
+        </div>
+        <p *ngIf="match.error" class="match-error">Válasszon csapatot és adjon meg összeget!</p>
+      </div>
+    </div>
+  </div>
+</div>

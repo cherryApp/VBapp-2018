@@ -4,6 +4,7 @@ import { Team } from './model/team';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AuthService } from './service/auth.service';
 import { isNull } from 'util';
+import { ImporterService } from './service/importer.service';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +22,8 @@ export class AppComponent implements OnInit {
   constructor(
     private baseService: BaseService<Team>,
     private afAuth: AngularFireAuth,
-    private authService: AuthService
+    private authService: AuthService,
+    private importerService: ImporterService
   ) {
     let keyTeam: Team = new Team();
     this.teamKeys = Object.keys( keyTeam );
@@ -32,11 +34,12 @@ export class AppComponent implements OnInit {
       user => { 
         this.user = user;
         if (!isNull(user)) {
-          this.getAllData();
+          // this.getAllData();
         }
       },
       err => console.log(err)
     );
+    // this.importerService.getJsonData();
   }
   
   getAllData() {
@@ -50,14 +53,6 @@ export class AppComponent implements OnInit {
     this.baseService.getOne(teamID).forEach(
       team => this.oneTeam = team
     );
-  }
-
-  onLogin() {
-    this.authService.login();
-  }
-
-  onLogout() {
-    this.authService.logOut();
   }
 
   updateRow(team: Team): void {

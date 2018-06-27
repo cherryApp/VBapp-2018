@@ -1,0 +1,32 @@
+.card-img-top {
+    max-height: 120px;
+    overflow: hidden;
+}
+
+.card-img-top img {
+    width: 100%;
+}
+
+.match-card {
+    margin-top: 15px;
+}
+
+.match-card .list-group-item img {
+    max-width: 32px;
+    box-shadow: 0 0 3px;
+}
+
+.picked {
+    background-color: darkseagreen;
+}
+
+.team-item {
+    cursor: pointer;
+}
+
+.match-error {
+    color: red;
+    font-weight: bold;
+    padding: 20px;
+    box-sizing: border-box;
+}

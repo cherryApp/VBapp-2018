@@ -1,0 +1,25 @@
+<form class="form-signin text-center" (ngSubmit)="onLogin()">
+  <img class="mb-4" src="/assets/logo.png" alt="" width="96" height="96">
+  <h1 class="h3 mb-3 font-weight-normal">Lépj be</h1>
+
+  <button type="button" class="btn btn-danger btn-lg btn-block" 
+    (click)="loginWithGoogle()">Belépés Google fiókkal</button>
+
+  <div class="clearfix">&nbsp;</div>
+
+  <label for="inputEmail" class="sr-only">Email cím</label>
+  <input name="email" id="inputEmail" class="form-control" 
+    [(ngModel)]="loginUser.email" placeholder="Email" required autofocus>
+  <label for="inputPassword" class="sr-only">Jelszó</label>
+  <input name="password" type="password" id="inputPassword" class="form-control" 
+    [(ngModel)]="loginUser.password" placeholder="Jelszó" required>
+  <div class="checkbox mb-3">
+    <label>
+      <input type="checkbox" value="remember-me"> emlékezz rám
+    </label>
+  </div>
+  <div class="alert alert-danger" *ngIf="loginError">
+    <strong>Hiba</strong> ellenőrizze az adatokat!
+  </div>
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Belépés</button>
+</form>

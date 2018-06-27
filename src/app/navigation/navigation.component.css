@@ -1,0 +1,8 @@
+.primary-navigation {
+    height: 64px;
+    background: url('/assets/pattern.jpg') fixed #0050ab;
+}
+
+.nav-link, .primary-navigation h5 {
+    color: aliceblue;
+}
