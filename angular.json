@@ -23,6 +23,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -123,5 +124,21 @@
       }
     }
   },
-  "defaultProject": "vbapp2"
+  "defaultProject": "vbapp2",
+  "schematics": {
+    "@schematics/angular": {
+      "service": {
+        "spec": false
+      },
+      "component": {
+        "spec": false
+      },
+      "class": {
+        "spec": false
+      },
+      "pipe": {
+        "spec": false
+      }
+    }
+  }
 }
